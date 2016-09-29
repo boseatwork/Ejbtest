@@ -27,17 +27,17 @@ and open the template in the editor.
                 <h:inputText id="eMail" value="#{sR.eMail}"/>
                 <br/>
                 <br/>
-                <h:commandButton value="Submit" action="#{sR.addHuman}"/>
+                <h:commandButton value="Submit" action="#{sR.addStudent}"/>
                 <br/>
             </h:form>
             <br/>
             <br/>
             <br/>
             <h2>Current catalogue of students</h2>
-            <h:dataTable value="#{sR.items}" var="item">
-                <h:column> #{item.id}</h:column>
-                <h:column> #{item.firstName}</h:column>
-                <h:column> #{item.lastName}</h:column>
+            <h:dataTable value="#{sR.students}" var="item">
+                <h:column> #{student.id}</h:column>
+                <h:column> #{student.firstName}</h:column>
+                <h:column> #{student.lastName}</h:column>
             </h:dataTable>
         </div>
     </h:body>

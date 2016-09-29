@@ -14,7 +14,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 @ManagedBean
-@Named(value = "studentWeb")
+@Named(value = "sR")
 @SessionScoped
 public class StudentWeb implements Serializable {
     private String firstName;
@@ -24,6 +24,14 @@ public class StudentWeb implements Serializable {
     
     @EJB
     private StudentRegistry studentRegistry;
+
+    public String geteMail() {
+        return eMail;
+    }
+
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
+    }
 
     public String getFirstName() {
         System.out.println("veryNew");
@@ -44,9 +52,11 @@ public class StudentWeb implements Serializable {
     }
 
     public List<Student> getStudents() {
-        return students;
+        System.out.println("getStudents");
+        return studentRegistry.getStudents();
     }
 
+    /*
     public StudentRegistry getStudentRegistry() {
         return studentRegistry;
     }
@@ -54,8 +64,10 @@ public class StudentWeb implements Serializable {
     public void setStudentRegistry(StudentRegistry studentRegistry) {
         this.studentRegistry = studentRegistry;
     }
+    */
     
     public void addStudent() {
+        System.out.println("addStudent");
         studentRegistry.addStudent(firstName, lastName, eMail);
     }
 
