@@ -24,7 +24,7 @@ and open the template in the editor.
                 <br/>
                 <br/>
                 <label>E-mail: </label>
-                <h:inputText id="eMail" value="#{sR.eMail}"/>
+                <h:inputText id="eMail" value="#{sR.email}"/>
                 <br/>
                 <br/>
                 <h:commandButton value="Submit" action="#{sR.addStudent}"/>
@@ -34,7 +34,7 @@ and open the template in the editor.
             <br/>
             <br/>
             <h2>Current catalogue of students</h2>
-            <h:dataTable value="#{sR.students}" var="item">
+            <h:dataTable value="#{sR.students}" var="student">
                 <h:column> #{student.id}</h:column>
                 <h:column> #{student.firstName}</h:column>
                 <h:column> #{student.lastName}</h:column>

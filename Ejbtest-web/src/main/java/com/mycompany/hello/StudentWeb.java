@@ -19,18 +19,18 @@ import javax.inject.Named;
 public class StudentWeb implements Serializable {
     private String firstName;
     private String lastName;
-    private String eMail;
+    private String email;
     private List<Student> students;
     
     @EJB
     private StudentRegistry studentRegistry;
 
-    public String geteMail() {
-        return eMail;
+    public String getEmail() {
+        return email;
     }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getFirstName() {
@@ -53,10 +53,11 @@ public class StudentWeb implements Serializable {
 
     public List<Student> getStudents() {
         System.out.println("getStudents");
-        return studentRegistry.getStudents();
+        students = studentRegistry.getStudents();
+        for(Student s: students) System.out.println(s.getFirstName());
+        return students;
     }
 
-    /*
     public StudentRegistry getStudentRegistry() {
         return studentRegistry;
     }
@@ -64,11 +65,10 @@ public class StudentWeb implements Serializable {
     public void setStudentRegistry(StudentRegistry studentRegistry) {
         this.studentRegistry = studentRegistry;
     }
-    */
     
     public void addStudent() {
         System.out.println("addStudent");
-        studentRegistry.addStudent(firstName, lastName, eMail);
+        studentRegistry.addStudent(firstName, lastName, email);
     }
 
 }
