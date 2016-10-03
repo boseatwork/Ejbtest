@@ -28,9 +28,17 @@ and open the template in the editor.
                 <br/>
                 <br/>
                 <h:commandButton value="Submit" action="#{sR.addStudent}"/>
+                <h:commandButton value="Search" action="#{sR.doSearch}"/>
                 <br/>
             </h:form>
             <br/>
+            <br/>
+            <h2>Search result</h2>
+            <h:dataTable value="#{sR.searchList}" var="student">
+                <h:column> #{student.id}</h:column>
+                <h:column> #{student.firstName}</h:column>
+                <h:column> #{student.lastName}</h:column>
+            </h:dataTable>
             <br/>
             <br/>
             <h2>Current catalogue of students</h2>

@@ -7,6 +7,7 @@ package com.mycompany.hello;
 import com.mycompany.ejb.Student;
 import com.mycompany.ejb.StudentRegistry;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
@@ -21,6 +22,7 @@ public class StudentWeb implements Serializable {
     private String lastName;
     private String email;
     private List<Student> students;
+    private List<Student> searchList;
     
     @EJB
     private StudentRegistry studentRegistry;
@@ -57,7 +59,12 @@ public class StudentWeb implements Serializable {
         for(Student s: students) System.out.println(s.getFirstName());
         return students;
     }
-
+    
+    public List<Student> getSearchList() {
+        System.out.println("getSearchList");
+        return searchList;
+    }
+      
     public StudentRegistry getStudentRegistry() {
         return studentRegistry;
     }
@@ -71,4 +78,10 @@ public class StudentWeb implements Serializable {
         studentRegistry.addStudent(firstName, lastName, email);
     }
 
+     public void doSearch() {
+        if (firstName==null) return;
+        System.out.println("getSearchList");
+        searchList = studentRegistry.searchStudents(firstName);
+        for(Student s: searchList) System.out.println(s.getFirstName());
+    }
 }

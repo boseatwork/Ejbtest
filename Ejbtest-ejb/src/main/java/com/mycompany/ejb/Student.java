@@ -19,6 +19,10 @@ import javax.persistence.NamedQuery;
     @NamedQuery(
             name="findAllStudents",
             query="select b from Student b"
+    ),
+    @NamedQuery(
+            name="searchStudents",
+            query="select b from Student b where b.firstName = :firstName"
     )
 })
 
