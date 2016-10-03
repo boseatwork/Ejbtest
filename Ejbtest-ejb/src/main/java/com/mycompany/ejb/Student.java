@@ -23,31 +23,32 @@ import javax.persistence.NamedQuery;
     @NamedQuery(
             name="searchStudents",
             query="select b from Student b where b.firstName = :firstName"
+                    + " or b.lastName = :lastName"
     )
 })
 
 public class Student {
     private String firstName;
     private String lastName;
-    private String eMail;
+    private String email;
     @Id 
     private int id;
     
     Student() {}
     
-    Student(int id, String firstName, String lastName, String eMail) {
+    Student(int id, String firstName, String lastName, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.eMail = eMail; 
+        this.email = email; 
     }
 
-    public String geteMail() {
-        return eMail;
+    public String getEmail() {
+        return email;
     }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public void setEmail(String email) {
+        this.email = email;
     }
      
     public String getFirstName() {

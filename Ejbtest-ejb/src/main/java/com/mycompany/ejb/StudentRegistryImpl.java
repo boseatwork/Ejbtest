@@ -36,9 +36,10 @@ public class StudentRegistryImpl implements StudentRegistry {
     }
     
     @Override
-    public List<Student> searchStudents(String str) {
+    public List<Student> searchStudents(String str1, String str2) {
         Query query = em.createNamedQuery("searchStudents"); 
-        query.setParameter("firstName", str);
+        query.setParameter("firstName", str1);
+        query.setParameter("lastName", str2);
         return query.getResultList();
     }
 }

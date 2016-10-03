@@ -17,5 +17,5 @@ public interface StudentRegistry {
     public void addStudent(String str1, String str2, String str3);
     
     public List<Student> getStudents();
-    public List<Student> searchStudents(String str);
+    public List<Student> searchStudents(String str1, String str2);
 }
