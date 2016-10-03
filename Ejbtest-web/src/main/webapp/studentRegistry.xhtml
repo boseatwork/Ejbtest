@@ -44,11 +44,14 @@ and open the template in the editor.
             <br/>
             <br/>
             <h2>Search result</h2>
-            <h:dataTable value="#{sR.searchList}" var="student">
-                <h:column> #{student.id}</h:column>
-                <h:column> #{student.firstName}</h:column>
-                <h:column> #{student.lastName}</h:column>
-            </h:dataTable>
+            <h:form>
+                <h:selectOneMenu>
+                    <f:selectItems value="#{sR.searchList}" var="student" 
+                               itemValue="#{student}" 
+                               itemLabel="#{student.firstName} #{student.lastName}">
+                    </f:selectItems>
+                </h:selectOneMenu>
+            </h:form>
             <br/>
             <br/>
             <h2>Current catalogue of students</h2>
