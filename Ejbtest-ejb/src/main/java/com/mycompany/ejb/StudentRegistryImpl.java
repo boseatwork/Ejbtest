@@ -30,8 +30,10 @@ public class StudentRegistryImpl implements StudentRegistry {
     }
     
     @Override
-    public void removeStudent(String studentId) {
-        this.em.remove(studentId);
+    public void removeStudent(int studentId) {
+        System.out.println("Almost success:" + studentId);
+        Student student = this.em.find(Student.class, studentId);
+        this.em.remove(student);
     }
     
     @Override

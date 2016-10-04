@@ -20,7 +20,7 @@ public class StudentWeb implements Serializable {
     private String firstName;
     private String lastName;
     private String email;
-    private String studentId;
+    private int studentId;
     private List<Student> students;
     private List<Student> searchList;
     
@@ -53,11 +53,11 @@ public class StudentWeb implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getStudentId() {
+    public int getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(String studentId) {
+    public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
 

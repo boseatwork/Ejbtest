@@ -15,7 +15,7 @@ import javax.ejb.Local;
 @Local
 public interface StudentRegistry {
     public void addStudent(String str1, String str2, String str3);
-    public void removeStudent(String studentId);
+    public void removeStudent(int studentId);
     
     public List<Student> getStudents();
     public List<Student> searchStudents(String str1, String str2);
