@@ -114,6 +114,5 @@ public class StudentWeb implements Serializable {
         if (firstName==null) return;
         System.out.println("doSearch");
         searchList = studentRegistry.searchStudents(firstName, lastName);
-        for(Student s: searchList) System.out.println(s.getFirstName());
-    }
+     }
 }

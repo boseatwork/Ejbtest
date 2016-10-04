@@ -14,27 +14,27 @@ and open the template in the editor.
     </head>
     <h:body>
         <div align="center">
-            <h1>Add a new student</h1>
+            <h1>Add, search or change a student</h1>
             <h:form>
-                <label>First name: </label>
-                <h:inputText id="name" value="#{sR.firstName}"
-                             validatorMessage="First name required">
-                    <f:validateRequired/>
-                </h:inputText>
-                <br/>
-                <br/>
-                <label>Last name: </label>
-                <h:inputText id="lastName" value="#{sR.lastName}"
-                             validatorMessage="Last name required">
-                                       <f:validateRequired/>
-                </h:inputText>
-                <br/>
-                <br/>
-                <label>E-mail: </label>
-                <h:inputText id="eMail" value="#{sR.email}"
-                             validatorMessage="E-mail required">
-                                       <f:validateRequired/>
-                </h:inputText>
+                <h:panelGrid columns="2">
+                    <h:outputLabel for="firstName" value="First name: "/>
+                    <h:inputText id="firstName" value="#{sR.firstName}"
+                                 validatorMessage="First name required">
+                        <f:validateRequired/>
+                    </h:inputText>
+
+                    <h:outputLabel for="lastName" value="Last name: "/>
+                    <h:inputText id="lastName" value="#{sR.lastName}"
+                                 validatorMessage="Last name required">
+                        <f:validateRequired/>
+                    </h:inputText>
+
+                    <h:outputLabel for="eMail" value="E-mail: "/>
+                    <h:inputText id="eMail" value="#{sR.email}"
+                                 validatorMessage="E-mail required">
+                        <f:validateRequired/>
+                    </h:inputText>
+                </h:panelGrid>
                 <br/>
                 <br/>
                 <h:commandButton value="Add" action="#{sR.addStudent}"/>
