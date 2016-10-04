@@ -97,6 +97,14 @@ public class StudentWeb implements Serializable {
         this.email = student.getEmail();
     }
     
+    public void change() {
+        System.out.println("change");
+        studentRegistry.change(studentId, firstName, lastName, email);
+        firstName = "";
+        lastName = "";
+        email = "";
+    }
+    
     public void removeStudent() {
         System.out.println("removeStudent");
         studentRegistry.removeStudent(studentId);

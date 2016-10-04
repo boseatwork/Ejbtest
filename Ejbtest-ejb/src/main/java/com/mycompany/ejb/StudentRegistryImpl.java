@@ -24,9 +24,19 @@ public class StudentRegistryImpl implements StudentRegistry {
     private EntityManager em;
 
     @Override
-    public void addStudent(String firstName, String lastName, String eMail) {
+    public void addStudent(String firstName, String lastName, String email) {
         this.em.persist(new 
-        Student(random.nextInt(2048), firstName, lastName, eMail));
+        Student(random.nextInt(2048), firstName, lastName, email));
+    }
+    
+    @Override
+    public void change(int id, String firstName, String lastName, 
+            String email) {
+        Student student = this.em.find(Student.class, id);
+        student.setFirstName(firstName);
+        student.setLastName(lastName);
+        student.setEmail(email);
+        this.em.merge(student);
     }
     
     @Override
