@@ -7,7 +7,6 @@ package com.mycompany.hello;
 import com.mycompany.ejb.Student;
 import com.mycompany.ejb.StudentRegistry;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
@@ -21,6 +20,7 @@ public class StudentWeb implements Serializable {
     private String firstName;
     private String lastName;
     private String email;
+    private String studentId;
     private List<Student> students;
     private List<Student> searchList;
     
@@ -53,6 +53,14 @@ public class StudentWeb implements Serializable {
         this.lastName = lastName;
     }
 
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
+
     public List<Student> getStudents() {
         System.out.println("getStudents");
         students = studentRegistry.getStudents();
@@ -77,10 +85,15 @@ public class StudentWeb implements Serializable {
         System.out.println("addStudent");
         studentRegistry.addStudent(firstName, lastName, email);
     }
+    
+    public void removeStudent() {
+        System.out.println("removeStudent");
+        studentRegistry.removeStudent(studentId);
+    }
 
      public void doSearch() {
         if (firstName==null) return;
-        System.out.println("getSearchList");
+        System.out.println("doSearch");
         searchList = studentRegistry.searchStudents(firstName, lastName);
         for(Student s: searchList) System.out.println(s.getFirstName());
     }

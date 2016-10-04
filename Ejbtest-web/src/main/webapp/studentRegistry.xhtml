@@ -45,12 +45,15 @@ and open the template in the editor.
             <br/>
             <h2>Search result</h2>
             <h:form>
-                <h:selectOneMenu>
+                <h:selectOneMenu value="#{sR.studentId}">
                     <f:selectItems value="#{sR.searchList}" var="student" 
-                               itemValue="#{student}" 
+                               itemValue="#{student.id}" 
                                itemLabel="#{student.firstName} #{student.lastName}">
                     </f:selectItems>
                 </h:selectOneMenu>
+                <br/>
+                <br/>
+                <h:commandButton value="Remove" action="#{sR.removeStudent}"/>
             </h:form>
             <br/>
             <br/>

@@ -30,6 +30,11 @@ public class StudentRegistryImpl implements StudentRegistry {
     }
     
     @Override
+    public void removeStudent(String studentId) {
+        this.em.remove(studentId);
+    }
+    
+    @Override
     public List<Student> getStudents() {
         Query query = em.createNamedQuery("findAllStudents");
         return query.getResultList();
