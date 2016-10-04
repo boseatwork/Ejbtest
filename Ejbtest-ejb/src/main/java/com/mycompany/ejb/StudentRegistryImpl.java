@@ -43,6 +43,11 @@ public class StudentRegistryImpl implements StudentRegistry {
     }
     
     @Override
+    public Student getFromDB(int studentId) {
+        return this.em.find(Student.class, studentId);
+    }
+    
+    @Override
     public List<Student> searchStudents(String str1, String str2) {
         Query query = em.createNamedQuery("searchStudents"); 
         query.setParameter("firstName", str1);

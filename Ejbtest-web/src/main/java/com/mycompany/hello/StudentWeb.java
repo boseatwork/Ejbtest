@@ -84,6 +84,17 @@ public class StudentWeb implements Serializable {
     public void addStudent() {
         System.out.println("addStudent");
         studentRegistry.addStudent(firstName, lastName, email);
+        firstName = "";
+        lastName = "";
+        email = "";
+    }
+    
+    public void prepareChange() {
+        System.out.println("prepareChange");
+        Student student = studentRegistry.getFromDB(studentId);
+        this.firstName = student.getFirstName();
+        this.lastName = student.getLastName();
+        this.email = student.getEmail();
     }
     
     public void removeStudent() {
