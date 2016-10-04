@@ -17,6 +17,7 @@ public interface StudentRegistry {
     public void addStudent(String str1, String str2, String str3);
     public void removeStudent(int studentId);
     
+    public Student getFromDB(int studentId);
     public List<Student> getStudents();
     public List<Student> searchStudents(String str1, String str2);
 }
