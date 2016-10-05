@@ -62,12 +62,11 @@ public class StudentWeb implements Serializable {
     }
 
     public List<Student> getStudents() {
-        System.out.println("getStudents");
+        System.out.println("setStudents");
         students = studentRegistry.getStudents();
-        for(Student s: students) System.out.println(s.getFirstName());
         return students;
     }
-    
+
     public List<Student> getSearchList() {
         System.out.println("getSearchList");
         return searchList;
@@ -108,6 +107,9 @@ public class StudentWeb implements Serializable {
     public void removeStudent() {
         System.out.println("removeStudent");
         studentRegistry.removeStudent(studentId);
+        firstName = "";
+        lastName = "";
+        email = "";
     }
 
      public void doSearch() {

@@ -5,6 +5,7 @@
  */
 package com.mycompany.ejb;
 
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -14,7 +15,7 @@ import javax.ejb.Local;
 @Local
 public interface RegStudentCourse {
     public void addEntry(int studentId, int courseId);
-
+    public List<StudentCourse> getTable();
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 }
