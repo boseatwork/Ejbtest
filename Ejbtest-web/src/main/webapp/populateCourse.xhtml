@@ -29,7 +29,7 @@ and open the template in the editor.
                         <f:validateRequired/>
                     </h:inputText>
 
-                    <h:outputLabel for="code" value="Course code: "/>
+                    <h:outputLabel for="code" value="Course id: "/>
                     <h:inputText id="code" value="#{populate.courseCode}"
                                  validatorMessage="Course code required">
                         <f:validateRequired/>
@@ -42,11 +42,18 @@ and open the template in the editor.
                 <br/>
             </h:form>
             <h2>Catalogue of courses</h2>
-            <h:dataTable value="#{sR.students}" var="student">
-                <h:column> #{student.id}</h:column>
-                <h:column> #{student.firstName}</h:column>
-                <h:column> #{student.lastName}</h:column>
-                <h:column> #{student.email}</h:column>
+            <h:dataTable value="#{courseWeb.courses}" var="course">
+                <h:column> #{course.id}</h:column>
+                <h:column> #{course.name}</h:column>
+                <h:column> #{course.code}</h:column>
+            </h:dataTable>
+            <br/>
+            <br/>
+            <h2>Catalogue of registered students</h2>
+            <h:dataTable value="#{populate.regStudents}" var="regStudent">
+                <h:column> #{regStudent.id}</h:column>
+                <h:column> #{regStudent.studentId}</h:column>
+                <h:column> #{regStudent.courseId}</h:column>
             </h:dataTable>
         </div>
     </h:body>

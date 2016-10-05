@@ -58,10 +58,11 @@ public class StudentRegistryImpl implements StudentRegistry {
     }
     
     @Override
-    public Student exactMatch(String str1, String str2) {
+    public List<Student> exactMatch(String str1, String str2) {
         Query query = em.createNamedQuery("exactMatch");
         query.setParameter("firstName", str1);
         query.setParameter("lastName", str2);
+        return query.getResultList();
     }
     
     @Override

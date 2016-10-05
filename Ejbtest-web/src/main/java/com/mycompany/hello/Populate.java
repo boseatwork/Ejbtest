@@ -5,8 +5,11 @@
  */
 package com.mycompany.hello;
 
+import com.mycompany.ejb.Course2;
+import com.mycompany.ejb.CourseRegistry;
 import com.mycompany.ejb.RegStudentCourse;
 import com.mycompany.ejb.Student;
+import com.mycompany.ejb.StudentCourse;
 import com.mycompany.ejb.StudentRegistry;
 import java.io.Serializable;
 import java.util.List;
@@ -19,17 +22,17 @@ import javax.inject.Named;
  *
  * @author User
  */
-@ManagedBean
 @Named(value="populate")
 @SessionScoped
 public class Populate implements Serializable {
     private String firstName;
     private String lastName;
     private int courseCode;
-    private List<Course> courses;
+    private List<Course2> courses;
+    private List<StudentCourse> regStudents;
     
-    //@EJB
-    //private CourseRegistry courseRegistry;
+    @EJB
+    private CourseRegistry courseRegistry;
     @EJB
     private StudentRegistry studentRegistry;
     @EJB
@@ -64,7 +67,8 @@ public class Populate implements Serializable {
     }
     
     public void registerStudent() {
-        Student student = studentRegistry.exactMatch(firstName, lastName);
-        regStudentCourse.addEntry(student.getId(), courseCode);
+        List<Student> students = studentRegistry.exactMatch(firstName, lastName);
+        if (students.size()==1)
+        regStudentCourse.addEntry(students.get(0).getId(), courseCode);
     }
 }
