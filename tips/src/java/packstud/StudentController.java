@@ -1,9 +1,7 @@
-package com.mycompany.hello;
+package packstud;
 
-import com.mycompany.ejb.Course;
-import com.mycompany.ejb.CourseFacade;
-import com.mycompany.ejb.util.JsfUtil;
-import com.mycompany.ejb.util.PaginationHelper;
+import packstud.util.JsfUtil;
+import packstud.util.PaginationHelper;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -17,33 +15,30 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
-import javax.inject.Inject;
 
-@Named(value = "courseController")
+@Named("studentController")
 @SessionScoped
-public class CourseController implements Serializable {
+public class StudentController implements Serializable {
 
-    private Course current;
+    private Student current;
     private DataModel items = null;
-    
-    
-    @Inject
-    private com.mycompany.ejb.CourseFacade ejbFacade;
+    @EJB
+    private packstud.StudentFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public CourseController() {
+    public StudentController() {
     }
 
-    public Course getSelected() {
+    public Student getSelected() {
         if (current == null) {
-            current = new Course();
+            current = new Student();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private CourseFacade getFacade() {
+    private StudentFacade getFacade() {
         return ejbFacade;
     }
 
@@ -71,13 +66,13 @@ public class CourseController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Course) getItems().getRowData();
+        current = (Student) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Course();
+        current = new Student();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -85,7 +80,7 @@ public class CourseController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CourseCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("StudentCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -94,7 +89,7 @@ public class CourseController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Course) getItems().getRowData();
+        current = (Student) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -102,7 +97,7 @@ public class CourseController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CourseUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("StudentUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -111,7 +106,7 @@ public class CourseController implements Serializable {
     }
 
     public String destroy() {
-        current = (Course) getItems().getRowData();
+        current = (Student) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -135,7 +130,7 @@ public class CourseController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CourseDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("StudentDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -191,21 +186,21 @@ public class CourseController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public Course getCourse(java.lang.Integer id) {
+    public Student getStudent(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = Course.class)
-    public static class CourseControllerConverter implements Converter {
+    @FacesConverter(forClass = Student.class)
+    public static class StudentControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            CourseController controller = (CourseController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "courseController");
-            return controller.getCourse(getKey(value));
+            StudentController controller = (StudentController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "studentController");
+            return controller.getStudent(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -225,11 +220,11 @@ public class CourseController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Course) {
-                Course o = (Course) object;
-                return getStringKey(o.getIdCourse());
+            if (object instanceof Student) {
+                Student o = (Student) object;
+                return getStringKey(o.getId());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Course.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Student.class.getName());
             }
         }
 
