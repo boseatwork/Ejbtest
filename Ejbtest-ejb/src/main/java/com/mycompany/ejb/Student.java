@@ -24,6 +24,11 @@ import javax.persistence.NamedQuery;
             name="searchStudents",
             query="select b from Student b where b.firstName = :firstName"
                     + " or b.lastName = :lastName"
+    ),
+    @NamedQuery(
+            name="exactMatch",
+            query="select b from Student b where b.firstName = :firstName" 
+            + " or b.lastName = :lastName"
     )
 })
 

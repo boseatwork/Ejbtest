@@ -21,4 +21,5 @@ public interface StudentRegistry {
     public Student getFromDB(int studentId);
     public List<Student> getStudents();
     public List<Student> searchStudents(String str1, String str2);
+    public Student exactMatch(String str1, String str2);
 }
