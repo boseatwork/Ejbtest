@@ -6,8 +6,11 @@
 package com.mycompany.ejb;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
@@ -36,6 +39,8 @@ public class Course2 implements Serializable {
     private String teacher;
     @Id 
     private int id;
+    @ManyToMany(targetEntity=Student.class, mappedBy="courseCollection")
+    private List<Student> studentCollection;
 
     public Course2() {
     }
@@ -97,4 +102,7 @@ public class Course2 implements Serializable {
         this.id = id;
     }
     
+    public void addStudent(Student student) {
+        studentCollection.add(student);
+    }
 }
