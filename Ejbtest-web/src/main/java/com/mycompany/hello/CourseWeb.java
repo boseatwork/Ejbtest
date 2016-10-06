@@ -1,16 +1,13 @@
-/**
- *
- * @author bjorn
- */
 package com.mycompany.hello;
 
 import com.mycompany.ejb.*;
 import java.io.Serializable;
 import java.util.List;
-import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.time.*;
+import java.util.ArrayList;
 
 @Named(value = "courseWeb")
 @SessionScoped
@@ -23,6 +20,7 @@ public class CourseWeb implements Serializable {
     private int courseId;
     private List<Course2> courses;
     private List<Course2> searchList;
+    private List<LocalDate> courseDates;
     
     @Inject
     private CourseRegistry courseRegistry;
@@ -88,6 +86,16 @@ public class CourseWeb implements Serializable {
         courses = courseRegistry.getCourses();
         for(Course2 c: courses) System.out.println(c.getName());
         return courses;
+    }
+    
+    public List<LocalDate> getCourseDates(){
+        courseDates = new ArrayList<>();
+        LocalDate today = LocalDate.now();
+        courseDates.add(today);
+        for (int x = 1; x <= 10; x++){
+            courseDates.add(today.minusDays(x));
+        }
+        return courseDates;
     }
     
     public List<Course2> getSearchList() {
