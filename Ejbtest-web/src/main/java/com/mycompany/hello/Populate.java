@@ -7,13 +7,10 @@ package com.mycompany.hello;
 
 import com.mycompany.ejb.Course2;
 import com.mycompany.ejb.CourseRegistry;
-import com.mycompany.ejb.RegStudentCourse;
 import com.mycompany.ejb.Student;
-import com.mycompany.ejb.StudentCourse;
 import com.mycompany.ejb.StudentRegistry;
 import java.io.Serializable;
 import java.util.List;
-import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -29,14 +26,12 @@ public class Populate implements Serializable {
     private String lastName;
     private int courseCode;
     private List<Course2> courses;
-    private List<StudentCourse> regStudents;
+    private List<Student> regStudents;
     
     @EJB
     private CourseRegistry courseRegistry;
     @EJB
     private StudentRegistry studentRegistry;
-    @EJB
-    private RegStudentCourse regStudentCourse;
 
     public String getFirstName() {
         return firstName;
@@ -70,14 +65,16 @@ public class Populate implements Serializable {
         return courses;
     }
 
-     public List<StudentCourse> getRegStudents() {
-         regStudents = regStudentCourse.getTable();
+     public List<Student> getRegStudents() {
+         // regStudents = courses.getTable();
          return regStudents;
     }
 
      public void registerStudent() {
         List<Student> students = studentRegistry.exactMatch(firstName, lastName);
-        if (students.size()==1)
-        regStudentCourse.addEntry(students.get(0).getId(), courseCode);
-    }
+        if (students.size()==1) {
+            Course2 course = courseRegistry.getFromDB(courseCode);
+            course.addStudent(students.get(0));
+        }
+     }
 }
