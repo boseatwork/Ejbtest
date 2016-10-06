@@ -5,8 +5,11 @@
  */
 package com.mycompany.ejb;
 
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
@@ -24,6 +27,11 @@ import javax.persistence.NamedQuery;
             name="searchStudents",
             query="select b from Student b where b.firstName = :firstName"
                     + " or b.lastName = :lastName"
+    ),
+    @NamedQuery(
+            name="exactMatch",
+            query="select b from Student b where b.firstName = :firstName" 
+            + " or b.lastName = :lastName"
     )
 })
 
@@ -31,6 +39,8 @@ public class Student {
     private String firstName;
     private String lastName;
     private String email;
+    @ManyToMany(targetEntity=Course2.class)
+    private Collection<Course2> courseCollection;
     @Id 
     private int id;
     
