@@ -30,7 +30,7 @@ import javax.persistence.NamedQuery;
     @NamedQuery(
             name="exactMatch",
             query="select b from Student b where b.firstName = :firstName" 
-            + " or b.lastName = :lastName"
+            + " and b.lastName = :lastName"
     )
 })
 
@@ -38,8 +38,8 @@ public class Student {
     private String firstName;
     private String lastName;
     private String email;
-    @ManyToMany(targetEntity=Course2.class)
-    private List<Course2> courseCollection;
+    /*@ManyToMany(targetEntity=Course2.class, mappedBy="studentCollection")
+    private List<Course2> courseCollection; */
     @Id 
     private int id;
     

@@ -73,9 +73,9 @@ public class Populate implements Serializable {
 
      public void registerStudent() {
         List<Student> students = studentRegistry.exactMatch(firstName, lastName);
+        System.out.println("In registerStudent " + students.size());
         if (students.size()==1) {
-            Course2 course = courseRegistry.getFromDB(courseCode);
-            course.addStudent(students.get(0));
+            courseRegistry.addStudentToCourse(courseCode, students.get(0));
         }
      }
 }

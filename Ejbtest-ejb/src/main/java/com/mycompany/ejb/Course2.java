@@ -6,7 +6,6 @@
 package com.mycompany.ejb;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -39,7 +38,7 @@ public class Course2 implements Serializable {
     private String teacher;
     @Id 
     private int id;
-    @ManyToMany(targetEntity=Student.class, mappedBy="courseCollection")
+    @ManyToMany//(targetEntity=Student.class)
     private List<Student> studentCollection;
 
     public Course2() {

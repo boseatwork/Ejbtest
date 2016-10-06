@@ -70,6 +70,7 @@ public class CourseRegistryImpl implements CourseRegistry {
     @Override
     public void addStudentToCourse(int courseId, Student student) {
         Course2 course = this.em.find(Course2.class, courseId);
+        System.out.println("addStudentToCourse ");
         course.addStudent(student);
         this.em.merge(course);
     }
