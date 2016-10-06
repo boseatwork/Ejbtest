@@ -61,10 +61,22 @@ and open the template in the editor.
             <br/>
             <h2>Current catalogue of students</h2>
             <h:dataTable value="#{sR.students}" var="student">
-                <h:column> #{student.id}</h:column>
-                <h:column> #{student.firstName}</h:column>
-                <h:column> #{student.lastName}</h:column>
-                <h:column> #{student.email}</h:column>
+                <h:column>
+                    <f:facet name="header">Id</f:facet> 
+                    #{student.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">First name</f:facet> 
+                    #{student.firstName}
+                </h:column>
+                <h:column> 
+                    <f:facet name="header">Last name</f:facet>     
+                    #{student.lastName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Email</f:facet> 
+                    #{student.email}
+                </h:column>
             </h:dataTable>
         </div>
     </h:body>
