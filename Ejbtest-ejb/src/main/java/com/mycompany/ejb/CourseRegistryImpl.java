@@ -65,4 +65,15 @@ public class CourseRegistryImpl implements CourseRegistry {
         query.setParameter("code", str2);
         return query.getResultList();
     }
+    
+    public void addStudentToCourse(int courseId, Student student) {
+        Course2 course = this.em.find(Course2.class, courseId);
+        course.addStudent(student);
+        this.em.merge(course);
+    }
+    
+    public List<Student> getStudentsInCourse(int courseId) {
+        Course2 course = this.em.find(Course2.class, courseId);
+        return course.getStudentCollection();
+    }
 }

@@ -100,9 +100,15 @@ public class Course2 implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
+    }  
     
     public void addStudent(Student student) {
         studentCollection.add(student);
     }
+
+    public List<Student> getStudentCollection() {
+        return studentCollection;
+    }
+    
+    
 }
