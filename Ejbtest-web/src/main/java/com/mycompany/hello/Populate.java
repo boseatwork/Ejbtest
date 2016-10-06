@@ -65,8 +65,9 @@ public class Populate implements Serializable {
         return courses;
     }
 
-     public List<Student> getRegStudents() {
-         // regStudents = courses.getTable();
+    public List<Student> getRegStudents() {
+         System.out.println("getRegStudents " + courseCode);
+         regStudents = courseRegistry.getStudentsInCourse(courseCode);
          return regStudents;
     }
 

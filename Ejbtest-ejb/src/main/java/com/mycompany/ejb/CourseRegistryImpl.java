@@ -5,6 +5,7 @@
  */
 package com.mycompany.ejb;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javax.ejb.Singleton;
@@ -76,6 +77,7 @@ public class CourseRegistryImpl implements CourseRegistry {
     @Override
     public List<Student> getStudentsInCourse(int courseId) {
         Course2 course = this.em.find(Course2.class, courseId);
-        return course.getStudentCollection();
+        if (course!=null) return course.getStudentCollection();
+        return new ArrayList<>();
     }
 }
