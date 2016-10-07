@@ -42,7 +42,7 @@ and open the template in the editor.
                 <br/>
             </h:form>
             <h2>Catalogue of courses</h2>
-            <h:dataTable value="#{courseWeb.courses}" var="course">
+            <h:dataTable value="#{populate.courses}" var="course">
                 <h:column> #{course.id}</h:column>
                 <h:column> #{course.name}</h:column>
                 <h:column> #{course.code}</h:column>

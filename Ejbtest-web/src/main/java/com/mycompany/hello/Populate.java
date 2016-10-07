@@ -66,11 +66,8 @@ public class Populate implements Serializable {
         this.courseCode = courseCode;
     }
     
-    public void setCourses() { 
-        courses = courseRegistry.getCourses();
-    }
-
     public List<Course2> getCourses() {
+        courses = courseRegistry.getCourses();
         return courses;
     }
 
