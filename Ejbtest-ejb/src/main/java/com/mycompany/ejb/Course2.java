@@ -38,7 +38,7 @@ public class Course2 implements Serializable {
     private String teacher;
     @Id 
     private int id;
-    @ManyToMany//(targetEntity=Student.class)
+    @ManyToMany
     private List<Student> studentCollection;
 
     public Course2() {

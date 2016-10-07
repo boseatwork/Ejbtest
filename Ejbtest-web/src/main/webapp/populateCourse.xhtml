@@ -48,6 +48,7 @@ and open the template in the editor.
                 <h:column> #{course.code}</h:column>
             </h:dataTable>
             <br/>
+            <h:outputText style="color:red;" value="#{populate.errorMessage}"/>
             <br/>
             <h2>Catalogue of registered students</h2>
             <h:dataTable value="#{populate.regStudents}" var="student">

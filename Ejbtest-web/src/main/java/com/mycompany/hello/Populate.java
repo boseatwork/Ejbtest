@@ -24,6 +24,7 @@ import javax.inject.Named;
 public class Populate implements Serializable {
     private String firstName;
     private String lastName;
+    private String errorMessage = "";
     private int courseCode;
     private List<Course2> courses;
     private List<Student> regStudents;
@@ -49,6 +50,14 @@ public class Populate implements Serializable {
         this.lastName = lastName;
     }
 
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+    
     public int getCourseCode() {
         return courseCode;
     }
@@ -73,9 +82,20 @@ public class Populate implements Serializable {
 
      public void registerStudent() {
         List<Student> students = studentRegistry.exactMatch(firstName, lastName);
-        System.out.println("In registerStudent " + students.size());
-        if (students.size()==1) {
-            courseRegistry.addStudentToCourse(courseCode, students.get(0));
+        if (courseRegistry.getFromDB(courseCode)==null) {
+            errorMessage = "No course with this id in database";
+            return;
+        }
+        switch(students.size()) {
+            case 0:
+                errorMessage = "No such student in the database";
+                break;
+            case 1:
+                courseRegistry.addStudentToCourse(courseCode, students.get(0));
+                break;
+            default:
+                errorMessage = "The name does not uniquely identify a student";
+                break;
         }
      }
 }
