@@ -8,12 +8,10 @@ import com.mycompany.ejb.Student;
 import com.mycompany.ejb.StudentRegistry;
 import java.io.Serializable;
 import java.util.List;
-import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-@ManagedBean
 @Named(value = "sR")
 @SessionScoped
 public class StudentWeb implements Serializable {

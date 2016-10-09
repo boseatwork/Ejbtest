@@ -17,17 +17,20 @@ and open the template in the editor.
             <h1>Register attendance</h1>
             <h2>Choose course</h2>
             <h:form>
-                <h:selectOneMenu value="#{courseWeb.courseId}">
-                    <f:selectItems value="#{courseWeb.courses}" var="course" 
+                <h:selectOneMenu value="#{aW.courseId}">
+                    <f:selectItems value="#{aW.courses}" var="course" 
                                    itemValue="#{course.id}" 
-                                   itemLabel="#{course.name} #{course.code} #{course.level} #{course.language} #{course.teacher}">
+                                   itemLabel="#{course.name} #{course.code}">
                     </f:selectItems>
                 </h:selectOneMenu>
+                <br/>
+                <br/>
+                <h:commandButton value="Generate"/>
                 <br/>
             </h:form>
             <br/>
             <h2>Choose date</h2>
-            <h:form>
+            <h:form>    
                 <h:selectOneMenu value="#{courseWeb.courseDates}">
                     <f:selectItems value="#{courseWeb.courseDates}" var="today" 
                                    itemValue="#{today}">
@@ -35,13 +38,17 @@ and open the template in the editor.
                 </h:selectOneMenu>
                 <br/>
                 <br/>
+
             </h:form>
             <br/>
             <br/>
             <h2>Students on the course</h2>
-            <h:dataTable value="#{studentWeb.students}" var="student">
-                <h:column> #{student.id}</h:column>
-                <h:column> #{student.name}</h:column>
+            <h:dataTable value="#{aW.regStudents}" var="student">
+                <h:column> 
+                    <input type="checkbox" name="present" value="ON" />
+                </h:column>
+                <h:column> #{student.firstName}</h:column>
+                <h:column> #{student.lastName}</h:column>
             </h:dataTable>
         </div>
     </h:body>
