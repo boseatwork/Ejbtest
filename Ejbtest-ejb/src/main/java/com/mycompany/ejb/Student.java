@@ -5,6 +5,7 @@
  */
 package com.mycompany.ejb;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -34,7 +35,7 @@ import javax.persistence.NamedQuery;
     )
 })
 
-public class Student {
+public class Student implements Serializable {
     private String firstName;
     private String lastName;
     private String email;
@@ -43,9 +44,16 @@ public class Student {
     @Id 
     private int id;
     
-    Student() {}
+    public Student() {}
     
-    Student(int id, String firstName, String lastName, String email) {
+    public Student(Student student) {
+        this.id = student.getId();
+        this.firstName = student.getFirstName();
+        this.lastName = student.getLastName();
+        this.email = student.getEmail();
+    }
+    
+    public Student(int id, String firstName, String lastName, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
