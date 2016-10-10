@@ -88,6 +88,7 @@ public class AttendanceWeb implements Serializable {
     
     public void createList() {
         System.out.println("In createList");
+        attendances.clear();
         List<Student> students = courseRegistry.getStudentsInCourse(courseId);
         for (Student x: students) 
             attendances.add(new StudentAttendance(x));
@@ -95,9 +96,9 @@ public class AttendanceWeb implements Serializable {
     
     public void addList() {
         LocalDate courseDate = LocalDate.of(year, month, day);
+        Course course = courseRegistry.getFromDB(courseId);
         for (StudentAttendance x: attendances) 
-            attendanceList.addAttendance(courseDate, 
-                    courseRegistry.getFromDB(courseId),
+            attendanceList.addAttendance(courseDate, course,
                     x.getStudent(), x.isPresent());
     }
 }

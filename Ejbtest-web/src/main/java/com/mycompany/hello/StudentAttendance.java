@@ -6,13 +6,12 @@
 package com.mycompany.hello;
 
 import com.mycompany.ejb.Student;
-import java.io.Serializable;
 
 /**
  *
  * @author bjorn
  */
-public class StudentAttendance implements Serializable {
+public class StudentAttendance {
     private Student student;
     private boolean present;
     
