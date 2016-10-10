@@ -6,8 +6,7 @@
 package com.mycompany.ejb;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Random;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,13 +17,15 @@ import javax.persistence.PersistenceContext;
  */
 @Singleton
 public class AttendanceListImpl implements AttendanceList {
+    static Random random = new Random();
+    
     @PersistenceContext
     private EntityManager em;
     @Override
     public void addAttendance(LocalDate courseDate, Course course, 
             Student student, boolean present) {
-        this.em.persist(new AttendanceLists(courseDate, course, student, 
-                present));
+        this.em.persist(new AttendanceLists(random.nextInt(2048), 
+                courseDate, course, student, present));
     }
     
 }

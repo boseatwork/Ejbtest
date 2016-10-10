@@ -29,8 +29,9 @@ public class AttendanceLists implements Serializable {
     
     public AttendanceLists() {}
     
-    public AttendanceLists(LocalDate courseDate, Course course, 
+    public AttendanceLists(int id, LocalDate courseDate, Course course, 
             Student student, boolean present) {
+        this.id = id;
         this.courseDate = courseDate;
         this.course = course;
         this.student = student;

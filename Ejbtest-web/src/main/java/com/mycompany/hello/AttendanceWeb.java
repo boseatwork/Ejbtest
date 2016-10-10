@@ -11,10 +11,10 @@ import com.mycompany.ejb.CourseRegistry;
 import com.mycompany.ejb.Student;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -25,7 +25,7 @@ import javax.inject.Named;
 @SessionScoped
 public class AttendanceWeb implements Serializable {
     private List<Course> courses;
-    private List<StudentAttendance> attendances;
+    private List<StudentAttendance> attendances = new ArrayList<>();
     private int courseId;
     private int year;
     private int month;
@@ -83,10 +83,14 @@ public class AttendanceWeb implements Serializable {
     
     public List<StudentAttendance> getAttendances() {
          System.out.println("getRegStudents " + courseId);
-         List<Student> students = courseRegistry.getStudentsInCourse(courseId);
-         for (Student x: students) 
-             attendances.add(new StudentAttendance(x));
          return attendances;
+    }
+    
+    public void createList() {
+        System.out.println("In createList");
+        List<Student> students = courseRegistry.getStudentsInCourse(courseId);
+        for (Student x: students) 
+            attendances.add(new StudentAttendance(x));
     }
     
     public void addList() {

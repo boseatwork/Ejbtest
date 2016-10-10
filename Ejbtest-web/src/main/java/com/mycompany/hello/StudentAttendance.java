@@ -19,7 +19,7 @@ public class StudentAttendance implements Serializable {
     public StudentAttendance() {};
     
     public StudentAttendance(Student student) {
-        this.student = new Student(student);
+        this.student = student;
     }
 
     public Student getStudent() {
