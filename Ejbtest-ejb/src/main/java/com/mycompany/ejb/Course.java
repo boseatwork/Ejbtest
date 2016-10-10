@@ -21,16 +21,16 @@ import javax.persistence.NamedQuery;
 @NamedQueries({
     @NamedQuery(
             name="findAllCourses",
-            query="select b from Course2 b"
+            query="select b from Course b"
     ),
     @NamedQuery(
             name="searchCourses",
-            query="select b from Course2 b where b.name = :name"
+            query="select b from Course b where b.name = :name"
                     + " or b.code = :code"
     )
 })
 
-public class Course2 implements Serializable {
+public class Course implements Serializable {
     private String name;
     private String code;
     private String level;
@@ -41,10 +41,20 @@ public class Course2 implements Serializable {
     @ManyToMany
     private List<Student> studentCollection;
 
-    public Course2() {
+    public Course() {
+    }
+
+    public Course(Course course) {
+        this.id = course.id;
+        this.name = course.name;
+        this.code = course.code;
+        this.level = course.level; 
+        this.language = course.language;
+        this.teacher = course.teacher;
+        
     }
     
-    Course2(int id, String name, String code, String level, String language, String teacher) {
+    Course(int id, String name, String code, String level, String language, String teacher) {
         this.id = id;
         this.name = name;
         this.code = code;

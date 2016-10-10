@@ -7,9 +7,10 @@ package com.mycompany.ejb;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
 
 /**
  *
@@ -17,25 +18,23 @@ import javax.persistence.Id;
  */
 @Entity
 public class AttendanceLists implements Serializable {
-    private List<StudentAttendance> attendances;
     private LocalDate courseDate;
+    boolean present;
+    @ManyToOne
+    private Course course;
+    @ManyToOne
+    private Student student;
     @Id
     private int id;
     
     public AttendanceLists() {}
     
-    public AttendanceLists(List<StudentAttendance> attendances, 
-            LocalDate courseDate) {
-        this.attendances = attendances;
+    public AttendanceLists(LocalDate courseDate, Course course, 
+            Student student, boolean present) {
         this.courseDate = courseDate;
-    }
-
-    public List<StudentAttendance> getAttendances() {
-        return attendances;
-    }
-
-    public void setAttendances(List<StudentAttendance> attendances) {
-        this.attendances = attendances;
+        this.course = course;
+        this.student = student;
+        this.present = present;
     }
 
     public LocalDate getCourseDate() {

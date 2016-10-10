@@ -6,14 +6,12 @@
 package com.mycompany.ejb;
 
 import java.time.LocalDate;
-import java.util.List;
 
 /**
  *
  * @author bjorn
  */
 public interface AttendanceList {
-    List<StudentAttendance> NewAttendanceList(List<Student> students);
-    void addAttendanceList(List<StudentAttendance> attendances, 
-            LocalDate courseDate);
+    void addAttendance(LocalDate courseDate, Course course, Student student, 
+            boolean present);
 }

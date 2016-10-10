@@ -27,12 +27,12 @@ public class CourseRegistryImpl implements CourseRegistry {
     @Override
     public void addCourse(String name, String code, String level, String language, String teacher) {
         this.em.persist(new 
-        Course2(random.nextInt(2048), name, code, level, language, teacher));
+        Course(random.nextInt(2048), name, code, level, language, teacher));
     }
     
     @Override
     public void change(int id, String name, String code, String level, String language, String teacher) {
-        Course2 course = this.em.find(Course2.class, id);
+        Course course = this.em.find(Course.class, id);
         course.setName(name);
         course.setCode(code);
         course.setLevel(level);
@@ -44,23 +44,23 @@ public class CourseRegistryImpl implements CourseRegistry {
     @Override
     public void removeCourse(int courseId) {
         System.out.println("Almost success:" + courseId);
-        Course2 course = this.em.find(Course2.class, courseId);
+        Course course = this.em.find(Course.class, courseId);
         this.em.remove(course);
     }
     
     @Override
-    public List<Course2> getCourses() {
+    public List<Course> getCourses() {
         Query query = em.createNamedQuery("findAllCourses");
         return query.getResultList();
     }
     
     @Override
-    public Course2 getFromDB(int courseId) {
-        return this.em.find(Course2.class, courseId);
+    public Course getFromDB(int courseId) {
+        return this.em.find(Course.class, courseId);
     }
     
     @Override
-    public List<Course2> searchCourses(String str1, String str2) {
+    public List<Course> searchCourses(String str1, String str2) {
         Query query = em.createNamedQuery("searchCourses"); 
         query.setParameter("name", str1);
         query.setParameter("code", str2);
@@ -69,7 +69,7 @@ public class CourseRegistryImpl implements CourseRegistry {
     
     @Override
     public void addStudentToCourse(int courseId, Student student) {
-        Course2 course = this.em.find(Course2.class, courseId);
+        Course course = this.em.find(Course.class, courseId);
         System.out.println("addStudentToCourse ");
         course.addStudent(student);
         this.em.merge(course);
@@ -77,7 +77,7 @@ public class CourseRegistryImpl implements CourseRegistry {
     
     @Override
     public List<Student> getStudentsInCourse(int courseId) {
-        Course2 course = this.em.find(Course2.class, courseId);
+        Course course = this.em.find(Course.class, courseId);
         if (course!=null) return course.getStudentCollection();
         return new ArrayList<>();
     }

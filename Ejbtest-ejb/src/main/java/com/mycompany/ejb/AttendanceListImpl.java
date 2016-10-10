@@ -20,18 +20,11 @@ import javax.persistence.PersistenceContext;
 public class AttendanceListImpl implements AttendanceList {
     @PersistenceContext
     private EntityManager em;
-
     @Override
-    public List<StudentAttendance> NewAttendanceList(List<Student> students) {
-        List<StudentAttendance> attendances = new ArrayList<>();
-        for (Student x: students) attendances.add(new StudentAttendance(x));
-        return attendances;
-    }
-    
-    @Override
-    public void addAttendanceList(List<StudentAttendance> attendances,
-            LocalDate courseDate) {
-        this.em.persist(new AttendanceLists(attendances, courseDate));
+    public void addAttendance(LocalDate courseDate, Course course, 
+            Student student, boolean present) {
+        this.em.persist(new AttendanceLists(courseDate, course, student, 
+                present));
     }
     
 }

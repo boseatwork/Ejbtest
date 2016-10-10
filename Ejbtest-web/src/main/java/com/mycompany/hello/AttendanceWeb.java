@@ -6,14 +6,13 @@
 package com.mycompany.hello;
 
 import com.mycompany.ejb.AttendanceList;
-import com.mycompany.ejb.Course2;
+import com.mycompany.ejb.Course;
 import com.mycompany.ejb.CourseRegistry;
 import com.mycompany.ejb.Student;
-import com.mycompany.ejb.StudentAttendance;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -25,16 +24,16 @@ import javax.inject.Named;
 @Named(value="aW")
 @SessionScoped
 public class AttendanceWeb implements Serializable {
-    private List<Course2> courses;
+    private List<Course> courses;
     private List<StudentAttendance> attendances;
     private int courseId;
     private int year;
     private int month;
     private int day;
     
-    @Inject
+    @EJB
     private CourseRegistry courseRegistry;
-    @Inject 
+    @EJB 
     private AttendanceList attendanceList;
     
     public int getCourseId() {
@@ -69,7 +68,7 @@ public class AttendanceWeb implements Serializable {
         this.day = day;
     }
     
-        public CourseRegistry getCourseRegistry() {
+    public CourseRegistry getCourseRegistry() {
         return courseRegistry;
     }
 
@@ -77,7 +76,7 @@ public class AttendanceWeb implements Serializable {
         this.courseRegistry = courseRegistry;
     }
     
-    public List<Course2> getCourses() {
+    public List<Course> getCourses() {
         courses = courseRegistry.getCourses();
         return courses;
     }
@@ -85,12 +84,18 @@ public class AttendanceWeb implements Serializable {
     public List<StudentAttendance> getAttendances() {
          System.out.println("getRegStudents " + courseId);
          List<Student> students = courseRegistry.getStudentsInCourse(courseId);
-         attendances = attendanceList.NewAttendanceList(students);
+         for (Student x: students) 
+             attendances.add(new StudentAttendance(x));
          return attendances;
     }
     
     public void addList() {
-        attendanceList.addAttendanceList(attendances, LocalDate.of(year, month, day));
+        LocalDate courseDate = LocalDate.of(year, month, day);
+        for (StudentAttendance x: attendances) 
+            attendanceList.addAttendance(courseDate, 
+                    courseRegistry.getFromDB(courseId),
+                    x.getStudent(), x.isPresent());
     }
 }
+
     

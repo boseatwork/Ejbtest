@@ -18,8 +18,8 @@ public class CourseWeb implements Serializable {
     private String language;
     private String teacher;
     private int courseId;
-    private List<Course2> courses;
-    private List<Course2> searchList;
+    private List<Course> courses;
+    private List<Course> searchList;
     private List<LocalDate> courseDates;
     
     @Inject
@@ -81,10 +81,10 @@ public class CourseWeb implements Serializable {
         this.courseRegistry = courseRegistry;
     }
     
-    public List<Course2> getCourses() {
+    public List<Course> getCourses() {
         System.out.println("getCourses");
         courses = courseRegistry.getCourses();
-        for(Course2 c: courses) System.out.println(c.getName());
+        for(Course c: courses) System.out.println(c.getName());
         return courses;
     }
     
@@ -98,7 +98,7 @@ public class CourseWeb implements Serializable {
         return courseDates;
     }
     
-    public List<Course2> getSearchList() {
+    public List<Course> getSearchList() {
         System.out.println("getSearchList");
         return searchList;
     }
@@ -115,7 +115,7 @@ public class CourseWeb implements Serializable {
     
     public void prepareChange() {
         System.out.println("prepareChange");
-        Course2 course = courseRegistry.getFromDB(courseId);
+        Course course = courseRegistry.getFromDB(courseId);
         this.name = course.getName();
         this.code = course.getCode();
         this.level = course.getLevel();

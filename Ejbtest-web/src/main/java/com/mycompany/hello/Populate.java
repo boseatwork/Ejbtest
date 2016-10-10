@@ -5,7 +5,7 @@
  */
 package com.mycompany.hello;
 
-import com.mycompany.ejb.Course2;
+import com.mycompany.ejb.Course;
 import com.mycompany.ejb.CourseRegistry;
 import com.mycompany.ejb.Student;
 import com.mycompany.ejb.StudentRegistry;
@@ -26,7 +26,7 @@ public class Populate implements Serializable {
     private String lastName;
     private String errorMessage = "";
     private int courseCode;
-    private List<Course2> courses;
+    private List<Course> courses;
     private List<Student> regStudents;
     
     @EJB
@@ -66,7 +66,7 @@ public class Populate implements Serializable {
         this.courseCode = courseCode;
     }
     
-    public List<Course2> getCourses() {
+    public List<Course> getCourses() {
         courses = courseRegistry.getCourses();
         return courses;
     }

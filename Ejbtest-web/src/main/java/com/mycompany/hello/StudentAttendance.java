@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.ejb;
+package com.mycompany.hello;
 
+import com.mycompany.ejb.Student;
 import java.io.Serializable;
 
 /**

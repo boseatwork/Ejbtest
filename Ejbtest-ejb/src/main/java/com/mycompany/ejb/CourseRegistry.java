@@ -18,9 +18,9 @@ public interface CourseRegistry {
     public void change(int id, String str1, String str2, String str3, String str4, String str5);
     public void removeCourse(int courseId);
     
-    public Course2 getFromDB(int courseId);
-    public List<Course2> getCourses();
-    public List<Course2> searchCourses(String str1, String str2);
+    public Course getFromDB(int courseId);
+    public List<Course> getCourses();
+    public List<Course> searchCourses(String str1, String str2);
     public void addStudentToCourse(int courseId, Student student);
     public List<Student> getStudentsInCourse(int courseId);
 }
