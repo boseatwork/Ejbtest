@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
  * @author bjorn
  */
 @Entity
-public class AttendanceLists implements Serializable {
+public class Attendance implements Serializable {
     private LocalDate courseDate;
     boolean present;
     @ManyToOne
@@ -27,9 +27,9 @@ public class AttendanceLists implements Serializable {
     @Id
     private int id;
     
-    public AttendanceLists() {}
+    public Attendance() {}
     
-    public AttendanceLists(int id, LocalDate courseDate, Course course, 
+    public Attendance(int id, LocalDate courseDate, Course course, 
             Student student, boolean present) {
         this.id = id;
         this.courseDate = courseDate;
@@ -53,6 +53,5 @@ public class AttendanceLists implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    
     
 }

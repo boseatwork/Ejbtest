@@ -24,7 +24,7 @@ public class AttendanceListImpl implements AttendanceList {
     @Override
     public void addAttendance(LocalDate courseDate, Course course, 
             Student student, boolean present) {
-        this.em.persist(new AttendanceLists(random.nextInt(2048), 
+        this.em.persist(new Attendance(random.nextInt(2048), 
                 courseDate, course, student, present));
     }
     

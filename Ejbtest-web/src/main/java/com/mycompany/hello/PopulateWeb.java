@@ -21,7 +21,7 @@ import javax.inject.Named;
  */
 @Named(value="populate")
 @SessionScoped
-public class Populate implements Serializable {
+public class PopulateWeb implements Serializable {
     private String firstName;
     private String lastName;
     private String errorMessage = "";
